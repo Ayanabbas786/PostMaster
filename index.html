@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PostMaster - Send GET/POST requests for free</title>
+    <meta name="author" content="Ayanabbas Ajani">
+    <meta name="description" content="This is a website from where you can send GET/POS requests to APIs and get the responses for free.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Shippori+Mincho+B1:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="prism.css">
+    <link rel="icon" type="image/x-icon" href="logo.ico" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Shippori Mincho B1', serif;
+        }
+
+        #responsePre {
+            max-height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><b>PostMaster</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mx-4" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="my-3">Welcome to PostMaster</h1>
+    </div>
+    <div class="container my-2">
+        <!--URL input-->
+        <div class="row mb-3">
+            <label for="url" class="col-sm-2 col-form-label">URL</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="urlField">
+            </div>
+        </div>
+        <!--Choosing the type of request-->
+        <fieldset class="row mb-3" id="chooseRequestType">
+            <legend class="col-form-label col-sm-2 pt-0">Request type</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="requestType" id="getRequest" value="GET" checked>
+                    <label class="form-check-label" for="getRequest">
+                        GET
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="requestType" id="postRequest" value="POST">
+                    <label class="form-check-label" for="postRequest">
+                        POST
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <!--Choosing the type of content for POST request-->
+        <fieldset class="row mb-3" id="chooseContentType">
+            <legend class="col-form-label col-sm-2 pt-0">Content type</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="contentType" id="contentJson" value="json" checked>
+                    <label class="form-check-label" for="contentJson">
+                        JSON
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="contentType" id="contentParams" value="params">
+                    <label class="form-check-label" for="contentParams">
+                        Custom Parameters
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <!--Custom parameters-->
+        <div id="parametersBox">
+            <div class="row mb-3">
+                <label for="parameter1" class="col-sm-2 col-form-label">Parameter 1</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="parameterKey1" placeholder="Enter parameter 1 key">
+
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="parameterValue1" placeholder="Enter parameter 1 value">
+                </div>
+                <button type="button" class="btn btn-primary btn-sm my-2" id="addParam" style="width: 736px;margin-left: 202px;">Add Parameter</button>
+            </div>
+        </div>
+        <div id="params"></div>
+        <!--JSON request box-->
+        <div class="my-4" id="requestJsonBox">
+            <div class="row mb-3">
+                <label for="enterJson" class="col-sm-2 col-form-label">Enter Request JSON</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="enterJson" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+        <!--Submit button-->
+        <div class="row mb-3">
+            <div class="col-sm-10">
+                <button type="button" class="btn btn-outline-success" id="sendRequest">Send Request</button>
+            </div>
+        </div>
+        <!--Response-->
+        <div class="my-4" id="responseJsonBox">
+            <div class="row mb-3">
+                <label for="responseJson" class="col-sm-2 col-form-label">Response</label>
+                <div class="col-sm-10">
+                    <pre class="language-javascript" id="responsePre"><code class="language-javascript" id="responsePrism">Your response will appear here.</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="script.js"></script>
+<script src="prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script></html>
