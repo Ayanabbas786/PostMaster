@@ -1,0 +1,1 @@
+This is version 1.0. The website is made using HTML,vanilla Javascript. Bootstrap CSS is used. Prism CSS and JS are used for displaying code.
